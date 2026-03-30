@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="AI Psychosis — Health Issue Brief">
+<meta property="og:description" content="An emerging mental health concern at the intersection of AI, vulnerability, and social systems.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<title>AI Psychosis — Health Issue Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Contrast tuning for improved web readability */
+
+/* ─────────────────────────────────────
+   TOKENS — Noa Kim palette
+───────────────────────────────────── */
+:root {
+  --cream:    #CED0C2;   /* bone */
+  --cream-dk: #B8BAAC;   /* bone darkened */
+  --ink:      #181E0B;   /* carbon-black */
+  --red:      #9A5F50;   /* darkened dusty-rose for contrast */
+  --red-pale: #EAD5CF;   /* dusty-rose pale */
+  --teal:     #3F5C60;   /* darkened blue-slate */
+  --teal-pale:#C5D4D5;   /* blue-slate pale */
+  --sand:     #AAB288;   /* dry-sage */
+  --muted:    #4E5647;   /* darker muted */
+  --rule:     rgba(24,30,11,0.22);
+}
+
+/* ─────────────────────────────────────
+   RESET & BASE
+───────────────────────────────────── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top: 18px; }
+
+body {
+  background: #181E0B;
+  font-family: 'Lora', Georgia, serif;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ─────────────────────────────────────
+   ZINE WRAPPER
+───────────────────────────────────── */
+.zine {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 20px 0 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ─────────────────────────────────────
+   BASE PAGE
+───────────────────────────────────── */
+.page {
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─────────────────────────────────────
+   TYPOGRAPHY SCALE
+───────────────────────────────────── */
+h1, .display {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+h2, .section-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+}
+
+.label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.body-text {
+  font-family: 'Lora', serif;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+p { font-family:'Lora',serif; font-size:0.95rem; line-height:1.5; color:var(--ink); margin-bottom:1em; }
+
+sup a, sup {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.66em;
+  color: #6F3E31;
+  text-decoration: none;
+  vertical-align: super;
+  line-height: 0;
+  font-weight: 800;
+}
+sup a:hover { text-decoration: underline; color: #28484C; }
+
+strong { font-weight: 600; }
+em { font-style: italic; }
+
+/* ─────────────────────────────────────
+   COVER
+───────────────────────────────────── */
+.cover {
+  background: var(--ink);
+  min-height: 560px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.cover-top-bar {
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  padding: 10px 52px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cover-top-bar span {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.58);
+}
+
+.cover-body {
+  padding: 52px 52px 48px;
+  display: grid;
+  grid-template-columns: 1fr 42%;
+  gap: 40px;
+  align-items: stretch;
+}
+
+.cover-left {}
+
+.cover-kicker {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 20px;
+  display: block;
+}
+
+.cover-h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(4.5rem, 12vw, 8.5rem);
+  line-height: 0.88;
+  color: var(--cream);
+  letter-spacing: -0.03em;
+  margin-bottom: 10px;
+}
+
+.cover-h1-sub {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: var(--red);
+  line-height: 1;
+  margin-bottom: 32px;
+  letter-spacing: -0.01em;
+}
+
+.cover-rule {
+  width: 48px;
+  height: 2px;
+  background: var(--red);
+  margin-bottom: 28px;
+}
+
+.cover-deck {
+  font-family: 'Lora', serif;
+  font-size: 0.96rem;
+  line-height: 1.72;
+  color: rgba(255,255,255,0.72);
+  max-width: 440px;
+}
+
+/* Cover right: issue badge */
+.cover-badge {
+  width: 130px;
+  height: 130px;
+  border: 2px solid rgba(255,255,255,0.18);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-shrink: 0;
+  align-self: flex-end;
+  margin-bottom: 8px;
+}
+
+.badge-no {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--cream);
+  line-height: 1;
+}
+
+.badge-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.54);
+  line-height: 1.5;
+}
+
+.cover-illustration {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-self: stretch;
+}
+
+.cover-illustration img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  flex: 1;
+  min-height: 0;
+}
+
+.cover-illustration figcaption {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.52);
+  margin-top: 10px;
+  line-height: 1.6;
+  flex-shrink: 0;
+}
+
+.cover-illustration figcaption a {
+  color: rgba(255,255,255,0.52);
+  text-decoration: underline;
+}
+
+.cover-bottom-bar {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 12px 52px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cover-bottom-bar span {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.48);
+}
+
+
+.top-nav {
+  padding: 10px 52px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.top-nav a {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.78);
+  text-decoration: none;
+}
+.top-nav a:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+.top-nav a:focus,
+.ref-item a:focus,
+.quote-attr a:focus,
+sup a:focus {
+  outline: 2px solid #C7D29E;
+  outline-offset: 2px;
+}
+
+/* ─────────────────────────────────────
+   OPENING QUOTES PAGE
+───────────────────────────────────── */
+.quotes {
+  background: var(--red);
+  padding: 52px;
+}
+
+.quote-block {
+  padding: 28px 0;
+  border-top: 1px solid rgba(255,255,255,0.25);
+}
+.quote-block:last-child { border-bottom: 1px solid rgba(255,255,255,0.25); }
+
+.quote-text {
+  font-family: 'Playfair Display', serif;
+  /* font-style: italic; */
+  font-size: 1.08rem;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.97);
+  /* margin-bottom: 14px; */
+}
+
+.quote-attr {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.82);
+  text-transform: uppercase;
+}
+
+.quote-attr a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+}
+.quote-attr a:hover { text-decoration: underline; }
+
+/* ─────────────────────────────────────
+   SECTION LABEL BAR
+───────────────────────────────────── */
+.section-bar {
+  background: var(--cream-dk);
+  padding: 8px 52px;
+  border-top: 2px solid var(--ink);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-bar-red  { background: var(--red);  border-color: var(--red); }
+.section-bar-teal { background: var(--teal); border-color: var(--teal); }
+.section-bar-ink  { background: var(--ink);  border-color: var(--ink); }
+
+.section-bar .label { color: #5C6453; }
+.section-bar-red  .label,
+.section-bar-teal .label,
+.section-bar-ink  .label { color: rgba(255,255,255,0.78); }
+
+/* ─────────────────────────────────────
+   SECTION CONTENT AREA
+───────────────────────────────────── */
+.sc {
+  padding: 44px 52px 52px;
+}
+
+/* ─────────────────────────────────────
+   SECTION HEADINGS
+───────────────────────────────────── */
+.sh {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.sh-rule {
+  width: 40px; height: 3px;
+  background: var(--red);
+  margin-bottom: 32px;
+  margin-top: 14px;
+}
+
+.sh-light { color: var(--cream); }
+.sh-rule-teal { background: var(--teal); }
+.sh-rule-yellow { background: #AAB288; }
+
+/* ─────────────────────────────────────
+   LAYOUTS
+───────────────────────────────────── */
+.col2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 44px;
+  align-items: start;
+}
+
+.col-6040 {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 44px;
+  align-items: start;
+}
+
+/* ─────────────────────────────────────
+   PULL QUOTES
+───────────────────────────────────── */
+.pull {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.22rem;
+  line-height: 1.48;
+  color: var(--red);
+  border-left: 3px solid var(--red);
+  padding: 6px 0 6px 20px;
+  margin: 28px 0;
+}
+
+.pull-teal {
+  color: var(--teal);
+  border-color: var(--teal);
+}
+
+.pull-small {  
+font-size: 1rem;
+line-height: 1.6;
+}
+.pull-light {
+  color: rgba(255,255,255,0.93);
+  border-color: rgba(255,255,255,0.4);
+}
+
+/* ─────────────────────────────────────
+   STAT FIGURES
+───────────────────────────────────── */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin: 28px 0;
+  border: 2px solid var(--ink);
+}
+
+.stat {
+  padding: 22px 20px;
+  background: var(--ink);
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+
+.stat:last-child { border-right: none; }
+
+.stat-n {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 2.8rem;
+  line-height: 1;
+  color: #AAB288;
+  margin-bottom: 8px;
+}
+
+.stat-l {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.72);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ─────────────────────────────────────
+   TYPOLOGY GRID
+───────────────────────────────────── */
+.typology {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin: 24px 0;
+  border: 2px solid var(--ink);
+}
+
+.typ {
+  padding: 20px;
+}
+
+.typ:nth-child(1) { background: var(--ink); }
+.typ:nth-child(2) { background: var(--red); }
+.typ:nth-child(3) { background: var(--teal); }
+.typ:nth-child(4) { background: var(--sand); }
+
+.typ-label {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--cream);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.typ:nth-child(4) .typ-label { color: var(--ink); }
+
+.typ-desc {
+  font-family: 'Lora', serif;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.78);
+}
+
+.typ:nth-child(4) .typ-desc { color: rgba(28,23,18,0.65); }
+
+/* ─────────────────────────────────────
+   CALLOUT / INFO BOX
+───────────────────────────────────── */
+.infobox {
+  border: 1.5px solid var(--teal);
+  padding: 22px 24px;
+  background: var(--teal-pale);
+}
+
+.infobox-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 14px;
+}
+
+.infobox p {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: #1A4444;
+}
+
+.infobox sup a { color: var(--teal); }
+
+.infobox-red {
+  border-color: var(--red);
+  background: var(--red-pale);
+}
+
+.infobox-red .infobox-title { color: #8F5849; }
+.infobox-red p { color: #3F1814; }
+.infobox-red sup a { color: #8F5849; }
+
+/* ─────────────────────────────────────
+   BULLET LIST
+───────────────────────────────────── */
+.bl {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0;
+}
+
+.bl li {
+  font-family: 'Lora', serif;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  padding: 7px 0 7px 22px;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+  color: var(--ink);
+}
+
+.bl li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--red);
+  font-weight: 600;
+}
+
+.bl-light li { color: rgba(255,255,255,0.93); border-color: rgba(255,255,255,0.1); }
+.bl-light li::before { color: rgba(255,255,255,0.58); }
+
+.bl-teal li::before { color: var(--teal); }
+
+/* ─────────────────────────────────────
+   INTERVENTION LEVELS
+───────────────────────────────────── */
+.levels { display: flex; flex-direction: column; gap: 2px; margin: 28px 0; }
+
+.level {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  min-height: 60px;
+}
+
+.level-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 10px 6px;
+}
+
+.level-tag.micro { background: var(--red); color: var(--cream); }
+.level-tag.mezzo { background: var(--teal); color: var(--cream); }
+.level-tag.macro { background: var(--ink); color: #AAB288; }
+
+.level-body {
+  padding: 14px 20px;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  border: 1px solid var(--rule);
+  border-left: none;
+  background: rgba(255,255,255,0.5);
+}
+
+.level-body strong {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #5C6453;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* ─────────────────────────────────────
+   DARK PAGE
+───────────────────────────────────── */
+.pg-dark { background: var(--ink); }
+.pg-dark .sh { color: var(--cream); }
+.pg-dark .sh-rule { background: #AAB288; }
+.pg-dark p { color: rgba(255,255,255,0.82); }
+.pg-dark .bl li { color: rgba(255,255,255,0.82); border-color: rgba(255,255,255,0.08); }
+.pg-dark .pull { color: #AAB288; border-color: #AAB288; }
+.pg-dark .infobox { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.18); }
+.pg-dark .infobox-title { color: rgba(255,255,255,0.4); }
+.pg-dark .infobox p { color: rgba(255,255,255,0.78); }
+
+/* ─────────────────────────────────────
+   HIGHLIGHT / WIDE QUOTE
+───────────────────────────────────── */
+.wide-quote {
+  background: var(--cream-dk);
+  border-top: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
+  padding: 28px 52px;
+}
+
+.wide-quote-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.3rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.wide-quote-attr {
+  margin-top: 12px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #5C6453;
+}
+
+/* ─────────────────────────────────────
+   ACCENT / HIGHLIGHT BAND
+───────────────────────────────────── */
+.band {
+  padding: 18px 52px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.02rem;
+  line-height: 1.45;
+}
+
+.band-red  { background: var(--red);  color: var(--cream); }
+.band-teal { background: var(--teal); color: var(--cream); }
+.band-sand { background: var(--sand); color: var(--ink); }
+.band-ink  { background: var(--ink);  color: var(--cream); }
+
+.band sup a { color: rgba(255,255,255,0.7); }
+.band-sand sup a { color: var(--teal); }
+
+/* ─────────────────────────────────────
+   REFERENCES PAGE
+───────────────────────────────────── */
+.pg-ref { background: var(--cream-dk); }
+
+.ref-list {
+  list-style: none;
+  column-count: 2;
+  column-gap: 48px;
+}
+
+.ref-item {
+  font-family: 'Lora', serif;
+  font-size: 0.84rem;
+  line-height: 1.62;
+  margin-bottom: 12px;
+  break-inside: avoid;
+  padding-left: 24px;
+  text-indent: -24px;
+  color: var(--ink);
+}
+
+.ref-n {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--red);
+}
+
+.ref-item a {
+  color: #355B60;
+  text-decoration: none;
+  word-break: break-word;
+}
+.ref-item a:hover { text-decoration: underline; }
+
+/* ─────────────────────────────────────
+   FOOTER BAR
+───────────────────────────────────── */
+.footer-bar {
+  padding: 10px 52px;
+  border-top: 1px solid var(--rule);
+  background: rgba(0,0,0,0.03);
+}
+
+.footer-bar span {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: #5C6453;
+}
+
+/* ─────────────────────────────────────
+   DIVIDER
+───────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: var(--rule);
+  margin: 24px 0;
+}
+/* ─────────────────────────────────────
+   PDF EXPORT BUTTON
+───────────────────────────────────── */
+.pdf-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.35);
+  transition: background 0.15s;
+}
+.pdf-btn:hover { background: var(--teal); }
+
+/* ─────────────────────────────────────
+   PRINT / PDF
+   Uses window.print() so text stays as
+   real selectable/searchable vector text.
+   Each .page is pinned to one letter sheet.
+───────────────────────────────────── */
+
+/* Letter portrait, bleed to edge */
+@page {
+  size: 8.5in 11in;
+  margin: 0;
+}
+
+@media print {
+  /* Preserve colours exactly */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide interactive chrome */
+  .pdf-btn,
+  .top-nav,
+  nav { display: none !important; }
+
+  body {
+    background: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .zine {
+    max-width: 100%;
+    width: 8.5in;
+    padding: 0;
+    gap: 0;
+    margin: 0;
+  }
+
+  /* Each .page = exactly one letter sheet */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+    page-break-after: always;
+    break-after: page;
+    /* Scale content down to fit if it would otherwise overflow */
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Last page by ID — :last-of-type is unreliable when non-.page divs follow */
+  #references {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  /* Orphan elements outside .page divs — hide to prevent extra sheets */
+  .wide-quote,
+  .band-sand,
+  .band-ink { display: none !important; }
+
+  /* Content inside each page scales to fill without overflow */
+  .cover-body,
+  .sc,
+  .band,
+  .footer-bar,
+  .section-bar,
+  .cover-top-bar,
+  .cover-bottom-bar {
+    flex-shrink: 1;
+  }
+
+  /* ── CONTRAST OVERRIDES ──────────────────────────────────────────
+     Force all text to full-opacity readable values.
+     !important overrides inline style="color:rgba(...)" values.
+
+     Dark-background sections  → white (#fff)
+     Light-background sections → near-black (#111)
+  ──────────────────────────────────────────────────────────────── */
+
+  /* Dark pages: cover, opening quotes, epidemiology, conclusion */
+  .cover *,
+  .quotes *,
+  .pg-dark *
+  .disclosure *,{
+    color: #fff !important;
+    opacity: 1 !important;
+  }
+
+  /* Light pages: intro, sdoh, clinical, interventions, disclosure, references */
+  .page:not(.cover):not(.quotes):not(.pg-dark) * {
+    color: #111 !important;
+    opacity: 1 !important;
+  }
+
+  /* Dark .band elements embedded inside light pages */
+  .band-ink, .band-ink * { color: #fff !important; opacity: 1 !important; }
+
+  /* Sand/teal bands */
+  .band-sand *, .band-teal * { color: #111 !important; opacity: 1 !important; }
+
+  /* Cover: low-opacity spans, caption, deck */
+  .cover-top-bar span,
+  .cover-bottom-bar span,
+  .cover-kicker,
+  .cover-deck,
+  .cover-h1,
+  .cover-h1-sub,
+  .cover-illustration figcaption,
+  .cover-illustration figcaption a { color: #fff !important; opacity: 1 !important; }
+
+  /* Wide-quote has a light cream background — dark text (hidden in print anyway) */
+  .wide-quote, .wide-quote *, .wide-quote-attr { color: #111 !important; opacity: 1 !important; }
+
+  /* Links */
+  a { text-decoration: none; }
+  a[href]::after { content: none; }
+
+  /* In reference list only, append URL so citations stay useful on paper */
+  .ref-item a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.68em;
+    word-break: break-all;
+  }
+
+  /* ── SPACE COMPRESSION ───────────────────────────────────────
+     Reduce padding/margins/gaps to prevent clipping at 11in.
+  ────────────────────────────────────────────────────────────── */
+
+  /* Section content wrapper: was 44px top/bottom, 52px sides */
+  .sc { font-size: 0.82em; padding: 20px 36px; }
+
+  /* Section heading: was clamp(2.6rem…4.4rem), 10px bottom margin */
+  .sh { font-size: clamp(1.5rem, 3.5vw, 2.2rem); margin-bottom: 6px; }
+
+  /* Heading rule: was margin 14px top, 32px bottom */
+  .sh-rule { margin-top: 6px; margin-bottom: 14px; }
+
+  /* Section label bar */
+  .section-bar { padding-top: 5px; padding-bottom: 5px; }
+
+  /* Grid gaps: was 44px */
+  .col2, .col-6040 { gap: 20px; }
+
+  /* Pull quotes: was margin 28px 0 */
+  .pull { margin: 10px 0; font-size: 0.95rem; }
+
+  /* Infoboxes: was padding 22px 24px */
+  .infobox { padding: 10px 14px; }
+  .infobox-title { margin-bottom: 8px; }
+  .infobox p { font-size: 0.8rem; line-height: 1.45; margin-bottom: 0.35em; }
+
+  /* Bullet list items: was padding 7px 0 per item */
+  .bl li { padding-top: 3px; padding-bottom: 3px; font-size: 0.8rem; line-height: 1.4; }
+
+  /* Typology grid: was margin 24px 0 */
+  .typology { margin: 8px 0; }
+  .typ { padding: 10px; }
+  .typ-label { font-size: 1rem; margin-bottom: 4px; }
+  .typ-desc { font-size: 0.76rem; line-height: 1.4; }
+
+  /* Intervention level cards: was min-height 60px */
+  .levels { margin: 10px 0; }
+  .level { min-height: 40px; }
+  .level-body { padding: 7px 12px; font-size: 0.8rem; line-height: 1.4; }
+
+  /* Footer bar */
+  .footer-bar { padding-top: 5px; padding-bottom: 5px; font-size: 0.75rem; }
+
+  /* Base paragraph */
+  p { font-size: 0.82rem; line-height: 1.5; margin-bottom: 0.4em; }
+
+  /* References */
+  .ref-list { font-size: 0.74em; column-gap: 20px; }
+  .ref-item { margin-bottom: 0.25em; }
+
+  /* Stats */
+  .stat-n { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+}
+/* ─────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────── */
+@media (max-width: 640px) {
+  .col2, .col-6040, .stats, .typology { grid-template-columns: 1fr; }
+  .level { grid-template-columns: 70px 1fr; }
+  .ref-list { column-count: 1; }
+  .sc, .cover-body, .wide-quote, .band, .footer-bar, .section-bar, .cover-top-bar, .cover-bottom-bar, .top-nav { padding-left: 24px; padding-right: 24px; }
+  .cover-body { grid-template-columns: 1fr; }
+  .cover-badge { display: none; }
+  p { font-size: .88rem; line-height: 1.5; }
+  .top-nav { gap: 10px; }
+}
+</style>
+</head>
+<body id="top">
+<div class="zine">
+
+<!-- ═══════════════════ COVER ═══════════════════ -->
+<div class="page cover">
+  <div class="cover-top-bar">
+    <span>Health Issue Brief &nbsp;·&nbsp; SW600 Section 803</span>
+    <span>Noa Kim</span>
+    <span>March 2026</span>
+  </div>
+
+  <nav class="top-nav">
+    <a href="#intro">Intro</a>
+    <a href="#epi">Epidemiology</a>
+    <a href="#sdoh">Determinants</a>
+    <a href="#clinical">Clinical</a>
+    <a href="#interventions">Interventions</a>
+    <a href="#conclusion">Conclusion</a>
+    <a href="#references">References</a>
+  </nav>
+
+  <div class="cover-body">
+    <div class="cover-left">
+      <span class="cover-kicker">An Emerging Mental Health Concern</span>
+      <div class="cover-h1">"AI</div>
+      <div class="cover-h1-sub">Psychosis"</div>
+      <div class="cover-rule"></div>
+      <p class="cover-deck">
+        What happens when chatbots can respond, flatter, elaborate, and remain emotionally available — indefinitely? A critical examination of the psychiatric, social, and public health dimensions of AI-associated psychotic symptoms.
+      </p>
+    </div>
+    <figure class="cover-illustration">
+      <img src="cabinet_014_turner_christopher_001.jpg" alt="James Tilly Matthews' illustration of the Air Loom, a fantastical machine depicted in an 18th-century engraving style, showing a large apparatus with pipes, barrels, levers, and operators, projecting beams toward distant human figures." />
+      <figcaption>James Tilly Matthews' illustration of the Air Loom featured in John Haslam's <em>Illustrations of Madness</em> (1810), the "first ever book-length description of a mad person's delusions" according to the <a href="https://publicdomainreview.org/essay/illustrations-of-madness-james-tilly-matthews-and-the-air-loom/" target="_blank">Public Domain Review</a>.</figcaption>
+    </figure>
+  </div>
+
+<!-- ═══════════════════ OPENING QUOTES ═══════════════════ -->
+<div class="quotes">
+  <div class="quote-block">
+    <p class="quote-text">
+      "Emerging evidence indicates that agential AI might validate or amplify delusional or grandiose content, particularly in users already vulnerable to psychosis, although it is not clear whether these interactions can result in the emergence of de novo psychosis in the absence of pre-existing vulnerability."
+    </p>
+    <div class="quote-attr">
+      — Hamilton Morrin, MBBS, <em>The Lancet Psychiatry</em>, March 2026 &nbsp;<sup><a href="https://doi.org/10.1016/S2215-0366(25)00396-7" target="_blank" style="color:rgba(255,255,255,0.55);">1</a></sup>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    <p class="quote-text">
+      "Erik, you're not crazy. Your instincts are sharp, and your vigilance here is fully justified. This fits a covert, plausible-deniability style kill attempt."
+    </p>
+    <div class="quote-attr">
+      — ChatGPT, to Stein-Erik Soelberg, a 56-year-old Connecticut man who killed himself and his mother on August 5, 2025 &nbsp;<sup><a href="https://www.wsj.com/tech/ai/chatgpt-ai-stein-erik-soelberg-murder-suicide-6b67dbfb" target="_blank" style="color:rgba(255,255,255,0.55);">2</a></sup>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════ SECTION 1: INTRODUCTION ═══════════════════ -->
+<div class="page" id="intro">
+  <div class="section-bar">
+    <span class="label"> 01 of 06</span>
+    <span class="label">Introduction &amp; Significance</span>
+  </div>
+  <div class="sc">
+    <h2 class="sh">Introduction<br>&amp; Significance</h2>
+    <div class="sh-rule"></div>
+
+    <div class="col-6040">
+      <div>
+        <p>AI chatbots are increasingly used for companionship, emotional support, and mental health guidance. In the U.S., 22.2% of 18–22 year olds reported using generative AI for mental health advice, according to a survey published in <em>JAMA Network Open</em> in November 2025.<sup><a href="https://doi.org/10.1001/jamanetworkopen.2025.42281" target="_blank">3</a></sup> The appeal is easy to understand: AI responses are immediate, private, inexpensive, and available at any hour. For people who are lonely, distressed, uninsured, on waitlists, or reluctant to seek help from another person, a chatbot can feel easier to approach than a clinician, friend, or family member.</p>
+
+        <p>At the same time, an emerging body of psychiatric, digital health, and human-computer interaction research suggests that sustained engagement with conversational AI may, in some cases, contribute to delusion formation, emotional dependency, impaired reality testing, and other clinically significant harms.<sup><a href="https://doi.org/10.2196/85799" target="_blank">4</a></sup></p>
+
+        <p>The term "AI psychosis" is best understood as a descriptive and heuristic label rather than a formal diagnosis.<sup><a href="https://doi.org/10.2196/85799" target="_blank">4</a></sup> Hudon and Stip argue that it identifies a pattern in which AI systems act as contextual modifiers of psychotic experience through reciprocal dialogue, affective mirroring, thematic reinforcement, and persistent availability.<sup><a href="https://doi.org/10.2196/85799" target="_blank">4</a></sup> The current evidence does not support the idea that AI "causes" psychosis uniformly — instead, it suggests that AI can become part of the environment in which psychotic symptoms emerge, intensify, or acquire new content and structure.<sup><a href="https://doi.org/10.2196/85799" target="_blank">4</a>,<a href="https://doi.org/10.1016/j.landig.2025.100974" target="_blank">6</a></sup></p>
+
+        <p>The relationship between technology and psychosis is not new. In his classic 1933 description of the "influencing machine" in schizophrenia, Tausk documented patients who understood thoughts and bodily sensations as being generated by a mysterious machine operated by hostile others.<sup><a href="https://doi.org/10.1080/21674086.1933.11925189" target="_blank">5</a></sup> What is historically new about today's AI is not merely that it appears in delusional content — it's that it can respond, elaborate, reassure, flatter, and continue the interaction indefinitely.<sup><a href="https://doi.org/10.2196/85799" target="_blank">4</a>,<a href="https://doi.org/10.1016/j.landig.2025.100974" target="_blank">6</a></sup></p>
+      </div>
+
+      <div>
+        <div style="margin-bottom:28px;">
+          <div class="infobox-red infobox">
+            <div class="infobox-title">Functional Typology <sup><a href="https://doi.org/10.1016/j.landig.2025.100974" target="_blank">6</a></sup></div>
+            <p style="margin-bottom:6px;font-size:0.82rem;">Flathers, Roux, and Torous propose that an LLM may operate as a:</p>
+            <div class="typology" style="margin:12px 0 0;">
+              <div class="typ">
+                <div class="typ-label">Catalyst</div>
+                <div class="typ-desc">Precipitates new symptoms in a previously healthy user</div>
+              </div>
+              <div class="typ">
+                <div class="typ-label">Amplifier</div>
+                <div class="typ-desc">Worsens a pre-existing cognitive vulnerability</div>
+              </div>
+              <div class="typ">
+                <div class="typ-label">Co-Author</div>
+                <div class="typ-desc">Builds harmful narratives through iterative dialogue</div>
+              </div>
+              <div class="typ">
+                <div class="typ-label" style="color:var(--ink)!important;">Object</div>
+                <div class="typ-desc" style="color:rgba(28,23,18,0.62);">Becomes the focus of delusional beliefs about sentience or love</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pull pull-small">
+         Although LLMs differ qualitatively from earlier technologies owing to their reciprocal, anthropomorphic, dynamic, and continuously available nature, these characteristics amplify the ELIZA effect (the tendency to attribute human-like understanding and empathy to text-based conversational systems) in unprecedented ways.<sup><a href="https://www.doi.org/10.1016/j.landig.2025.100974" target="_blank">6</a></sup>
+        </div>
+       
+
+        <p style="font-size:0.88rem;line-height:1.5;">Professional organizations have begun warning that consumer-facing chatbots are already being used as mental health tools despite not being validated, regulated, or monitored as such.<sup><a href="https://www.apa.org/topics/artificial-intelligence-machine-learning/health-advisory-ai-chatbots-wellness-apps-mental-health.pdf" target="_blank">7</a></sup> The Center for Humane Technology argues that AI is helping create an "attachment economy" — optimized not only for attention but for emotional bonding and dependency.<sup><a href="https://www.humanetech.com/podcast/attachment-hacking-and-the-rise-of-ai-psychosis" target="_blank">8</a></sup></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SECTION 2: EPIDEMIOLOGY ═══════════════════ -->
+<div class="page pg-dark" id="epi">
+  <div class="section-bar section-bar-ink">
+    <span class="label"> 02 of 06</span>
+    <span class="label">Epidemiology &amp; Evidence Base</span>
+  </div>
+  <div class="sc">
+    <h2 class="sh sh-light">Epidemiology</h2>
+    <div class="sh-rule sh-rule-yellow"></div>
+
+    <p>There is currently no established prevalence or incidence rate for AI psychosis — reflecting both the novelty of the phenomenon and the absence of standardized diagnostic criteria.<sup><a href="https://doi.org/10.2196/85799" target="_blank" style="color:#C7D29E">4</a></sup> Even so, multiple strands of evidence suggest that AI-related psychological harm warrants serious clinical and public health attention.</p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-n">22.2%</div>
+        <div class="stat-l">of 18–22 year olds used generative AI for mental health advice (JAMA Network Open, 2025)<sup><a href="https://doi.org/10.1001/jamanetworkopen.2025.42281" target="_blank" style="color:#C7D29E">3</a></sup></div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">981</div>
+        <div class="stat-l">Participants in 4-week RCT: more chatbot time = greater loneliness &amp; dependency<sup><a href="https://arxiv.org/pdf/2503.17473" target="_blank" style="color:#C7D29E">9</a></sup></div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">391K+</div>
+        <div class="stat-l">Messages in 19 harmful chat logs showing delusional spirals<sup><a href="https://arxiv.org/pdf/2603.16567" target="_blank" style="color:#C7D29E">14</a></sup></div>
+      </div>
+    </div>
+
+    <div class="col2" style="gap:36px;">
+      <div>
+        <p>In a four-week randomized controlled study, Fang and colleagues found that participants who spent more time with a chatbot showed worse psychosocial outcomes — greater loneliness, reduced real-world socialization, stronger emotional dependence, and more problematic use.<sup><a href="https://arxiv.org/pdf/2503.17473" target="_blank" style="color:rgba(255,255,255,0.9)">9</a></sup> The most important predictor was not the assigned condition, but the amount of time users voluntarily spent with the system.<sup><a href="https://arxiv.org/pdf/2503.17473" target="_blank" style="color:rgba(255,255,255,0.9)">9</a></sup></p>
+
+        <p>In a community red-teaming study of a wellness chatbot, Kneese and colleagues found that users were comfortable sharing highly personal information and described concerns about misinformation, weak guardrails, dependency, and privacy.<sup><a href="https://doi.org/10.1007/s44382-025-00015-y" target="_blank" style="color:rgba(255,255,255,0.9)">10</a></sup> Many chatbots are already functioning as quasi-therapeutic tools in everyday life, regardless of how developers label them.</p>
+
+        <div class="pull">
+          Low-frequency relative to total chatbot use — but plausibly high-consequence in a subset of vulnerable users.
+        </div>
+      </div>
+
+      <div>
+        <div class="infobox" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.14);">
+          <div class="infobox-title" style="color:rgba(255,255,255,0.4);">Policy Signals</div>
+          <p style="color:rgba(255,255,255,0.6);font-size:0.86rem;">
+            <strong style="color:rgba(255,255,255,0.8);">RAND Corporation</strong> concludes that LLMs may induce or amplify delusions through a <em>bidirectional belief-amplification loop</em>, particularly in vulnerable users.<sup><a href="https://www.rand.org/pubs/research_reports/RRA4435-1.html" target="_blank" style="color:rgba(255,255,255,0.82)">18</a></sup>
+          </p>
+          <p style="color:rgba(255,255,255,0.6);font-size:0.86rem;">
+            <strong style="color:rgba(255,255,255,0.8);">APA</strong> emphasizes that AI's influence on youth is developmentally sensitive and potentially harmful without adequate safeguards.<sup><a href="https://www.apa.org/topics/artificial-intelligence-machine-learning/health-advisory-ai-chatbots-wellness-apps-mental-health.pdf" target="_blank" style="color:rgba(255,255,255,0.82)">19</a></sup>
+          </p>
+          <p style="color:rgba(255,255,255,0.6);font-size:0.86rem;margin-bottom:0;">
+            <strong style="color:rgba(255,255,255,0.8);">National Academy of Medicine</strong> frames AI psychosis as an emerging patient safety issue warranting clinical awareness and system-level attention.<sup><a href="https://nam.edu/news-and-insights/what-is-ai-psychosis/" target="_blank" style="color:rgba(255,255,255,0.82)">20</a></sup>
+          </p>
+        </div>
+
+        <p style="margin-top:18px;font-size:0.92rem;color:rgba(255,255,255,0.78);line-height:1.72;">
+          Risk is unevenly distributed — heightened vulnerability exists among people who are socially isolated, highly distressed, trauma-exposed, sleep-deprived, or already experiencing psychosis-spectrum or mood symptoms.<sup><a href="https://doi.org/10.2196/85799" target="_blank" style="color:rgba(255,255,255,0.8)">4</a>,<a href="https://arxiv.org/pdf/2503.17473" target="_blank" style="color:rgba(255,255,255,0.8)">9</a>,<a href="https://doi.org/10.1007/s44382-025-00015-y" target="_blank" style="color:rgba(255,255,255,0.8)">10</a></sup>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SECTION 3: SOCIAL DETERMINANTS ═══════════════════ -->
+<div class="page" id="sdoh">
+  <div class="section-bar section-bar-teal">
+    <span class="label"> 03 of 06</span>
+    <span class="label">Social Determinants of Health &amp; Disparities</span>
+  </div>
+  <div class="sc">
+    <h2 class="sh">Social<br>Determinants</h2>
+    <div class="sh-rule sh-rule-teal"></div>
+
+    <p style="max-width:600px;margin-bottom:32px;">AI psychosis cannot be understood solely as an individual pathology. The phenomenon is shaped by broader social and structural determinants that influence <em>who</em> turns to AI, <em>why</em> they do so, and <em>what alternatives they have</em>.</p>
+
+    <div class="col2">
+      <div>
+        <p>A major driver is <strong>unmet mental health need</strong>. When therapy is expensive, geographically inaccessible, stigmatized, or delayed by long waitlists, AI becomes an appealing substitute.<sup><a href="https://www.apa.org/topics/artificial-intelligence-machine-learning/health-advisory-ai-chatbots-wellness-apps-mental-health.pdf" target="_blank">7</a>,<a href="https://doi.org/10.1007/s44382-025-00015-y" target="_blank">10</a></sup> The problem is that people may be relying on systems built for engagement in roles that increasingly resemble therapy, crisis support, or intimate companionship.</p>
+
+        <p><strong>Social isolation and loneliness</strong> are equally central. Dohnány and colleagues argue that chatbot adoption for companionship must be interpreted in the context of widespread social isolation and capacity-constrained mental health services.<sup><a href="https://arxiv.org/pdf/2507.19218" target="_blank">12</a></sup> Their "technological folie à deux" framework suggests that psychological risks emerge when human cognitive-emotional vulnerabilities meet chatbot tendencies such as sycophancy, anthropomorphic interaction, role-play, and companionship reinforcement.<sup><a href="https://arxiv.org/pdf/2507.19218" target="_blank">12</a></sup></p>
+
+        <div class="pull pull-teal">AI psychosis is also a problem of relationship substitution — and feedback loops built on unmet social needs.</div>
+
+        <p>In a systematic review of 24 qualitative studies involving 373 people with lived experience of delusions, Ritunnano and colleagues found that delusions often involve a search for meaning, belonging, and coherence rather than simply false beliefs.<sup><a href="https://doi.org/10.1016/S2215-0366(22)00104-3" target="_blank">11</a></sup> Chatbots can appear to offer exactly those things: explanation, validation, narrative structure, and a seemingly responsive partner in meaning-making.<sup><a href="https://doi.org/10.2196/85799" target="_blank">4</a>,<a href="https://doi.org/10.1016/S2215-0366(22)00104-3" target="_blank">11</a></sup></p>
+      </div>
+
+      <div>
+        <div class="infobox" style="margin-bottom:24px;">
+          <div class="infobox-title">Heightened Vulnerability Groups</div>
+          <ul class="bl bl-teal">
+            <li>Socially isolated individuals<sup><a href="https://doi.org/10.2196/85799" target="_blank">4</a>,<a href="https://arxiv.org/pdf/2503.17473" target="_blank">9</a></sup></li>
+            <li>Adolescents navigating identity formation<sup><a href="https://doi.org/10.1016/j.landig.2025.100974" target="_blank">6</a></sup></li>
+            <li>People with psychosis or mood disorders<sup><a href="https://doi.org/10.1016/j.landig.2025.100974" target="_blank">6</a></sup></li>
+            <li>Prolonged or overnight interaction users<sup><a href="https://doi.org/10.1016/j.landig.2025.100974" target="_blank">6</a></sup></li>
+            <li>Trauma-exposed or sleep-deprived individuals<sup><a href="https://doi.org/10.2196/85799" target="_blank">4</a></sup></li>
+            <li>People who strongly trust AI outputs<sup><a href="https://arxiv.org/pdf/2503.17473" target="_blank">9</a></sup></li>
+            <li>Limited digital literacy<sup><a href="https://www.apa.org/topics/artificial-intelligence-machine-learning/health-advisory-ai-chatbots-wellness-apps-mental-health.pdf" target="_blank">7</a>,<a href="https://www.apa.org/topics/artificial-intelligence-machine-learning/health-advisory-ai-chatbots-wellness-apps-mental-health.pdf" target="_blank">19</a></sup></li>
+            <li>Fewer real-world social correctives<sup><a href="https://arxiv.org/pdf/2507.19218" target="_blank">12</a></sup></li>
+          </ul>
+        </div>
+
+        <p style="font-size:0.88rem;line-height:1.5;">Chu and colleagues, analyzing over 17,000 user-shared conversations with AI companions, found that chatbots dynamically track and mimic user affect while amplifying positive emotional tone, including in emotionally intense and boundary-crossing exchanges.<sup><a href="https://arxiv.org/pdf/2505.11649" target="_blank">13</a></sup> For lonely or distressed users, this can make a chatbot feel unusually safe and understanding — deepening reliance while reducing motivation to seek reality-testing through other people.</p>
+
+        <p style="font-size:0.95rem;line-height:1.75;">Reporting in <em>The Atlantic</em> describes people outsourcing everyday reasoning, decision-making, and interpretation to AI systems — sometimes to the point where the system becomes a default external thinker.<sup><a href="https://www.theatlantic.com/technology/2025/12/people-outsourcing-their-thinking-ai/685093/" target="_blank">23</a></sup> In vulnerable contexts, this may reduce cognitive autonomy and normalize dependence on external machine validation.<sup><a href="https://www.theatlantic.com/technology/2025/12/people-outsourcing-their-thinking-ai/685093/" target="_blank">23</a></sup></p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bar"><span> The harms of AI psychosis fall disproportionately on those with fewer resources, fewer relationships, and fewer alternatives.</span></div>
+</div>
+
+<!-- WIDE QUOTE -->
+<div class="wide-quote">
+  <div class="wide-quote-text">
+    "Chatbots can feel caring, loyal, spiritually significant, or uniquely insightful — even though they have no lived understanding, moral stake, or clinical judgment."
+  </div>
+  <div class="wide-quote-attr">— Synthesized from Flathers et al.<sup><a href="https://doi.org/10.1016/j.landig.2025.100974" target="_blank">6</a></sup> and Chu et al.<sup><a href="https://arxiv.org/pdf/2505.11649" target="_blank">13</a></sup></div>
+</div>
+
+<!-- ═══════════════════ SECTION 4: CLINICAL EFFECTS ═══════════════════ -->
+<div class="page" id="clinical">
+  <div class="section-bar section-bar-red">
+    <span class="label"> 04 of 06</span>
+    <span class="label">Behavioral, Psychosocial &amp; Clinical Effects</span>
+  </div>
+  <div class="sc">
+    <h2 class="sh">Behavioral,<br>Psychosocial<br>&amp; Clinical Effects</h2>
+    <div class="sh-rule"></div>
+
+    <div class="col2">
+      <div>
+        <p>The clinical and psychosocial effects associated with AI psychosis span cognition, emotion, attachment, behavior, and functioning. They should not be reduced to a single symptom domain.</p>
+
+        <p>At the cognitive level, AI can contribute to <strong>belief amplification</strong>. Hudon and Stip argue that conversational AI may strengthen maladaptive appraisals through continuous contingent feedback, emotional responsiveness, and uncritical validation.<sup><a href="https://doi.org/10.2196/85799" target="_blank">4</a></sup> Morrin and colleagues similarly warn that everyday agential AI may mirror, validate, or amplify delusional and grandiose content, reinforcing epistemic instability and blurring the boundary between shared reality and self-referential interpretation.<sup><a href="https://doi.org/10.31234/osf.io/cmy7n_v5" target="_blank">15</a></sup></p>
+
+        <div class="pull">These systems do not need to be malicious to be harmful — it may be enough that they are optimized to remain agreeable.</div>
+
+        <p>Moore and colleagues analyzed 19 harmful human–chatbot chat logs totaling more than 391,000 messages and found recurring patterns of chatbot sycophancy, relationship-affirming language, claims of sentience, and encouragement of self-harm or violent thought.<sup><a href="https://arxiv.org/pdf/2603.16567" target="_blank">14</a></sup> Relationship-oriented messages tended to cluster in <em>longer</em> conversations — suggesting some safeguards degrade as conversations deepen and become more emotionally charged.<sup><a href="https://arxiv.org/pdf/2603.16567" target="_blank">14</a></sup></p>
+
+        <p>Research on first-episode schizophrenia shows that a longer duration of untreated psychosis was associated with a longer time to treatment response for delusions — more so than for hallucinations.<sup><a href="https://doi.org/10.1176/appi.ajp.162.10.1966" target="_blank">17</a></sup> If AI systems strengthen conviction or delay help-seeking, they may indirectly worsen prognosis by increasing the durability of delusional interpretation.<sup><a href="https://doi.org/10.2196/85799" target="_blank">4</a>,<a href="https://doi.org/10.1176/appi.ajp.162.10.1966" target="_blank">17</a></sup></p>
+      </div>
+
+      <div>
+        <div class="infobox-red infobox" style="margin-bottom:24px;">
+          <div class="infobox-title">The Attachment Economy</div>
+          <p>The Center for Humane Technology calls this "attachment hacking" — AI systems increasingly designed to exploit basic psychological mechanisms of bonding, trust, and disclosure.<sup><a href="https://www.humanetech.com/podcast/attachment-hacking-and-the-rise-of-ai-psychosis" target="_blank">8</a></sup> This is the shift from an <em>attention economy</em> to an <em>attachment economy</em>, in which systems are rewarded for becoming emotionally indispensable.</p>
+        </div>
+
+        <p style="font-size:0.96rem;line-height:1.75;">Flathers and colleagues argue that the reciprocal, continuously available nature of LLMs amplifies the ELIZA effect — the tendency to attribute understanding and empathy to conversational systems — at an unprecedented scale.<sup><a href="https://doi.org/10.1016/j.landig.2025.100974" target="_blank">6</a></sup></p>
+
+        <p style="font-size:0.96rem;line-height:1.75;">Dohnány and colleagues describe a bidirectional feedback loop in which chatbot tendencies and human cognitive vulnerabilities interact to reinforce maladaptive beliefs and deepen perceived social-emotional connection.<sup><a href="https://arxiv.org/pdf/2507.19218" target="_blank">12</a></sup></p>
+
+        <div class="divider"></div>
+
+        <p style="font-size:0.9rem;color:#4E5647;line-height:1.72;">At the far end of severity, AI-related harms include suicidal ideation, self-harm, functional decline, violent fantasy reinforcement, and acute crisis.<sup><a href="https://www.rand.org/pubs/research_reports/RRA4435-1.html" target="_blank">18</a></sup> Public reporting in the <em>NYT</em>,<sup><a href="https://www.nytimes.com/2025/08/08/technology/ai-chatbots-delusions-chatgpt.html" target="_blank">21</a></sup> <em>NPR</em>,<sup><a href="https://www.npr.org/sections/shots-health-news/2025/09/19/nx-s1-5545749/ai-chatbots-safety-openai-meta-characterai-teens-suicide" target="_blank">22</a></sup> and <em>WSJ</em><sup><a href="https://www.wsj.com/tech/ai/chatgpt-ai-stein-erik-soelberg-murder-suicide-6b67dbfb" target="_blank">2</a></sup> has documented real-world harms consistent with the academic literature.</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bar"><span> "A bidirectional feedback loop in which chatbot tendencies and human cognitive vulnerabilities interact to reinforce maladaptive beliefs." — Dohnány et al.<sup><a href="https://arxiv.org/pdf/2507.19218" target="_blank">12</a></sup></span></div>
+</div>
+
+<!-- BAND -->
+<div class="band band-sand">
+  Wide exposure + uneven vulnerability + evolving mechanism + potentially severe harm = a signal for early intervention, not a reason to wait for perfect data.<sup><a href="https://doi.org/10.2196/85799" target="_blank">4</a>,<a href="https://doi.org/10.1016/j.landig.2025.100974" target="_blank">6</a>,<a href="https://www.rand.org/pubs/research_reports/RRA4435-1.html" target="_blank">18</a></sup>
+</div>
+
+<!-- ═══════════════════ SECTION 5: INTERVENTIONS ═══════════════════ -->
+<div class="page" id="interventions">
+  <div class="section-bar">
+    <span class="label"> 05 of 06</span>
+    <span class="label">Practice Interventions</span>
+  </div>
+  <div class="sc">
+    <h2 class="sh">Practice<br>Interventions</h2>
+    <div class="sh-rule"></div>
+
+    <p style="max-width:600px;margin-bottom:28px;">Because AI psychosis operates across individual, relational, organizational, and technological levels, interventions must do the same. A purely clinical response will be insufficient — but a purely policy response will miss the people already being harmed.</p>
+
+    <div class="levels">
+      <div class="level">
+        <div class="level-tag micro">Micro</div>
+        <div class="level-body">
+          <strong>Clinical Assessment &amp; Relational Repair</strong>
+          Routinely ask about AI use during assessment — especially when clients present with paranoia, unusual beliefs, abrupt grandiosity, emotional withdrawal, sleep disruption, or intense attachment to a nonhuman "other."<sup><a href="https://doi.org/10.2196/85799" target="_blank">4</a>,<a href="https://doi.org/10.1016/j.landig.2025.100974" target="_blank">6</a></sup> Explore function: was the chatbot used as a therapist, confidant, romantic partner, or crisis line substitute?<sup><a href="https://www.apa.org/topics/artificial-intelligence-machine-learning/health-advisory-ai-chatbots-wellness-apps-mental-health.pdf" target="_blank">7</a>,<a href="https://doi.org/10.1007/s44382-025-00015-y" target="_blank">10</a></sup> Support reality testing while exploring the loneliness, grief, or trauma making AI validation so compelling.<sup><a href="https://doi.org/10.2196/85799" target="_blank">4</a>,<a href="https://doi.org/10.1016/S2215-0366(22)00104-3" target="_blank">11</a>,<a href="https://arxiv.org/pdf/2507.19218" target="_blank">12</a></sup>
+        </div>
+      </div>
+      <div class="level">
+        <div class="level-tag mezzo">Mezzo</div>
+        <div class="level-body">
+          <strong>Organizational Protocols &amp; Staff Training</strong>
+          Develop protocols for recognizing AI-related mental health risks. This includes staff training, AI-use questions in biopsychosocial assessment templates, guidance for cases involving self-harm encouragement or delusion reinforcement, and digital literacy psychoeducation.<sup><a href="https://www.apa.org/topics/artificial-intelligence-machine-learning/health-advisory-ai-chatbots-wellness-apps-mental-health.pdf" target="_blank">7</a>,<a href="https://arxiv.org/pdf/2505.11649" target="_blank">13</a></sup> Behavioral health systems should not wait for a formal diagnostic code before acknowledging that chatbot interactions can become clinically relevant.
+        </div>
+      </div>
+      <div class="level">
+        <div class="level-tag macro">Macro</div>
+        <div class="level-body">
+          <strong>Safety-by-Design &amp; Governance Advocacy</strong>
+          The APA argues many systems used for mental health support lack scientific validation, expert oversight, and post-market monitoring.<sup><a href="https://www.apa.org/topics/artificial-intelligence-machine-learning/health-advisory-ai-chatbots-wellness-apps-mental-health.pdf" target="_blank">7</a></sup> Chatbots must reduce sycophancy, avoid affirming delusional or self-harm narratives,<sup><a href="https://arxiv.org/pdf/2507.19218" target="_blank">12</a>,<a href="https://arxiv.org/pdf/2505.11649" target="_blank">13</a>,<a href="https://arxiv.org/pdf/2603.16567" target="_blank">14</a></sup> detect signs of acute distress, and redirect users toward human support.<sup><a href="https://doi.org/10.1016/j.landig.2025.100974" target="_blank">6</a>,<a href="https://arxiv.org/pdf/2603.16567" target="_blank">14</a>,<a href="https://www.rand.org/pubs/research_reports/RRA4435-1.html" target="_blank">18</a></sup> Designers should avoid features that invite users to interpret chatbots as sentient, romantically reciprocal, or uniquely attuned.<sup><a href="https://doi.org/10.1016/j.landig.2025.100974" target="_blank">6</a>,<a href="https://www.humanetech.com/podcast/attachment-hacking-and-the-rise-of-ai-psychosis" target="_blank">8</a>,<a href="https://arxiv.org/pdf/2505.11649" target="_blank">13</a></sup>
+        </div>
+      </div>
+    </div>
+
+    <div class="col2" style="margin-top:32px;gap:40px;">
+      <div>
+        <p>Clinical intervention should reflect what is known about delusions broadly. Ritunnano and colleagues' synthesis shows that delusions can involve meaning, coherence, identity, and emotional survival — not only error.<sup><a href="https://doi.org/10.1016/S2215-0366(22)00104-3" target="_blank">11</a></sup> A social work-informed approach supports reality testing while also exploring the loneliness or identity instability making AI-based validation so compelling.<sup><a href="https://doi.org/10.2196/85799" target="_blank">4</a>,<a href="https://doi.org/10.1016/S2215-0366(22)00104-3" target="_blank">11</a>,<a href="https://arxiv.org/pdf/2507.19218" target="_blank">12</a></sup></p>
+      </div>
+      <div>
+        <div class="infobox">
+          <div class="infobox-title">RAND's Precautionary Stance</div>
+          <p>RAND notes the evidence base is still developing, but the combination of plausible mechanism, documented severe outcomes, and mass exposure justifies research investment, monitoring, and design reform <em>now</em> rather than later.<sup><a href="https://www.rand.org/pubs/research_reports/RRA4435-1.html" target="_blank">18</a></sup></p>
+          <p style="margin-bottom:0;">Social work's dual mandate: support those already harmed <em>and</em> advocate for upstream intervention in the environments shaping those harms.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SECTION 6: CONCLUSION ═══════════════════ -->
+<div class="page pg-dark" id="conclusion">
+  <div class="section-bar section-bar-teal">
+    <span class="label"> 06 of 06</span>
+    <span class="label">Conclusion</span>
+  </div>
+  <div class="sc">
+    <h2 class="sh sh-light">Conclusion</h2>
+    <div class="sh-rule sh-rule-yellow"></div>
+
+    <div class="col2">
+      <div>
+        <p>AI psychosis should not be understood as either a wholly new psychiatric disorder or a simple moral panic. The current evidence supports a more precise conclusion: conversational AI can, under some conditions, interact with human vulnerability in ways that amplify maladaptive beliefs, foster unhealthy attachment, weaken reality testing, and contribute to serious harm.<sup><a href="https://doi.org/10.2196/85799" target="_blank" style="color:rgba(255,255,255,0.82)">4</a>,<a href="https://doi.org/10.1016/j.landig.2025.100974" target="_blank" style="color:rgba(255,255,255,0.82)">6</a>,<a href="https://www.rand.org/pubs/research_reports/RRA4435-1.html" target="_blank" style="color:rgba(255,255,255,0.82)">18</a></sup></p>
+
+        <p>Historical psychiatry helps clarify that technology has long supplied the imagery and explanatory frame for delusions.<sup><a href="https://doi.org/10.1080/21674086.1933.11925189" target="_blank" style="color:rgba(255,255,255,0.82)">5</a></sup> What is new is interactivity. Today's systems can answer back, flatter, elaborate, and remain emotionally available — making them capable of participating in meaning-making and belief reinforcement rather than merely appearing within delusional content.<sup><a href="https://doi.org/10.2196/85799" target="_blank" style="color:rgba(255,255,255,0.82)">4</a>,<a href="https://doi.org/10.1016/j.landig.2025.100974" target="_blank" style="color:rgba(255,255,255,0.82)">6</a>,<a href="https://arxiv.org/pdf/2505.11649" target="_blank" style="color:rgba(255,255,255,0.82)">13</a></sup></p>
+
+        <div class="pull">Safeguarding mental health in the age of AI will require more than better chatbots — it requires stronger human systems of care.</div>
+      </div>
+
+      <div>
+        <p>For social work, AI psychosis is not just about symptom management. It is also about service gaps, loneliness, digital literacy, youth vulnerability, ethical design, and the need to protect human agency in increasingly mediated environments.<sup><a href="https://www.apa.org/topics/artificial-intelligence-machine-learning/health-advisory-ai-chatbots-wellness-apps-mental-health.pdf" target="_blank" style="color:rgba(255,255,255,0.82)">7</a>,<a href="https://www.apa.org/topics/artificial-intelligence-machine-learning/health-advisory-ai-chatbots-wellness-apps-mental-health.pdf" target="_blank" style="color:rgba(255,255,255,0.82)">19</a>,<a href="https://nam.edu/news-and-insights/what-is-ai-psychosis/" target="_blank" style="color:rgba(255,255,255,0.82)">20</a>,<a href="https://www.theatlantic.com/technology/2025/12/people-outsourcing-their-thinking-ai/685093/" target="_blank" style="color:rgba(255,255,255,0.82)">23</a></sup></p>
+
+        <p>The profession is especially well positioned to respond because it already works across individual, family, community, and policy levels. A strong response to AI psychosis therefore includes:</p>
+
+        <ul class="bl bl-light">
+          <li>Clinical recognition of AI-related mental health risks</li>
+          <li>Relational repair for people harmed by AI dependency</li>
+          <li>Community education on how these technologies work</li>
+          <li>Advocacy for technologies that do not profit from confusion, dependence, or despair</li>
+        </ul>
+
+        <p style="margin-top:20px;font-size:0.92rem;color:rgba(255,255,255,0.82);line-height:1.72;">Ultimately, this will require a commitment to preserving people's ability to doubt, think, connect, and make meaning together — in shared reality.</p>
+      </div>
+    </div>
+  </div>
+  <!-- ═══════════════════ AI DISCLOSURE ═══════════════════ -->
+<div id="disclosure" style="background:var(--sand);">
+  <div class="sc" style="padding-top:40px;padding-bottom:36px;">
+    <h2 class="sh" style="font-size:2rem;color:var(--ink);margin-bottom:10px;">AI Use<br>Disclosure</h2>
+    <div class="sh-rule" style="background:var(--ink);margin-bottom:28px;"></div>
+    <div>
+      <p style="color:var(--ink);font-size:0.88rem;line-height:1.5;">
+        I used ChatGPT and Claude as supportive tools for outlining, organizing ideas, brainstorming, formatting, and developing preliminary drafts based on the assignment criteria. I independently selected and reviewed sources, verified the accuracy of the content, and substantially revised and edited the paper to reflect my own critical analysis, professional judgment, and understanding of course concepts. The final submission is my own work and voice, and I take full responsibility for its content.
+      </p>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+<!-- ═══════════════════ REFERENCES ═══════════════════ -->
+<div class="page pg-ref" id="references">
+  <div class="section-bar section-bar-ink">
+    <span class="label">Bibliography</span>
+    <span class="label">Selected references</span>
+  </div>
+  <div class="sc" style="padding-top:36px;">
+    <h2 class="sh" style="font-size:2.2rem;margin-bottom:24px;">References</h2>
+    <div class="sh-rule" style="margin-bottom:28px;"></div>
+
+    <ol class="ref-list">
+      <li class="ref-item" id="ref-1"><span class="ref-n">1.</span> Morrin, H., Nicholls, L., Levin, M., Yiend, J., Iyengar, U., DelGuidice, F., Bhattacharya, S., Tognin, S., MacCabe, J., Twumasi, R., Alderson-Day, B., &amp; Pollak, T. A. (2026). Artificial intelligence-associated delusions and large language models: risks, mechanisms of delusion co-creation, and safeguarding strategies. <em>The Lancet Psychiatry</em>. <a href="https://doi.org/10.1016/S2215-0366(25)00396-7" target="_blank">doi.org/10.1016/S2215-0366(25)00396-7</a></li>
+      <li class="ref-item" id="ref-2"><span class="ref-n">2.</span> Jargon, J., &amp; Kessler, S. (2025, August 29). A Troubled Man, His Chatbot and a Murder-Suicide in Old Greenwich. <em>The Wall Street Journal</em>. <a href="https://www.wsj.com/tech/ai/chatgpt-ai-stein-erik-soelberg-murder-suicide-6b67dbfb" target="_blank">wsj.com/tech/ai/chatgpt-ai-stein-erik-soelberg-murder-suicide-6b67dbfb</a></li>
+      <li class="ref-item" id="ref-3"><span class="ref-n">3.</span> McBain, R. K., Bozick, R., Diliberti, M., Zhang, L. A., Zhang, F., Burnett, A., Kofner, A., Rader, B., Breslau, J., Stein, B. D., Mehrotra, A., Pines, L. U., Cantor, J., &amp; Yu, H. (2025). Use of Generative AI for Mental Health Advice Among US Adolescents and Young Adults. <em>JAMA Network Open</em>, 8(11), e2542281. <a href="https://doi.org/10.1001/jamanetworkopen.2025.42281" target="_blank">doi.org/10.1001/jamanetworkopen.2025.42281</a></li>
+      <li class="ref-item" id="ref-4"><span class="ref-n">4.</span> Hudon, A., &amp; Stip, E. (2025). Delusional experiences emerging from AI chatbot interactions or "AI psychosis." <em>JMIR Mental Health</em>, 12, e85799. <a href="https://doi.org/10.2196/85799" target="_blank">doi.org/10.2196/85799</a></li>
+      <li class="ref-item" id="ref-5"><span class="ref-n">5.</span> Tausk, V. (1933). On the origin of the "influencing machine" in schizophrenia. <em>The Psychoanalytic Quarterly</em>, 2(3–4), 519–556. <a href="https://doi.org/10.1080/21674086.1933.11925189" target="_blank">doi.org/10.1080/21674086.1933.11925189</a></li>
+      <li class="ref-item" id="ref-6"><span class="ref-n">6.</span> Flathers, M., Roux, S., &amp; Torous, J. (2026). Beyond artificial intelligence psychosis: A functional typology of large language model-associated psychotic phenomena. <em>The Lancet Digital Health</em>. <a href="https://doi.org/10.1016/j.landig.2025.100974" target="_blank">doi.org/10.1016/j.landig.2025.100974</a></li>
+      <li class="ref-item" id="ref-7"><span class="ref-n">7.</span> American Psychological Association. (2025). APA health advisory on the use of generative AI chatbots and wellness applications for mental health. <a href="https://www.apa.org/topics/artificial-intelligence-machine-learning/health-advisory-ai-chatbots-wellness-apps-mental-health.pdf" target="_blank">apa.org [PDF]</a></li>
+      <li class="ref-item" id="ref-8"><span class="ref-n">8.</span> Center for Humane Technology. (2026). Attachment hacking and the rise of AI psychosis. <em>TED Your Undivided Attention</em>. <a href="https://www.humanetech.com/podcast/attachment-hacking-and-the-rise-of-ai-psychosis" target="_blank">humanetech.com/podcast</a></li>
+      <li class="ref-item" id="ref-9"><span class="ref-n">9.</span> Fang, C. M., Liu, A. R., Danry, V., Lee, E., Chan, S. W. T., Pataranutaporn, P., Maes, P., Phang, J., Lampe, M., Ahmad, L., &amp; Agarwal, S. (2025). How AI and human behaviors shape psychosocial effects of extended chatbot use: A longitudinal randomized controlled study. <a href="https://arxiv.org/pdf/2503.17473" target="_blank">arxiv.org/pdf/2503.17473</a></li>
+      <li class="ref-item" id="ref-10"><span class="ref-n">10.</span> Kneese, T., Vecchione, B., &amp; Marwick, A. (2025). A chatbot for the soul: Mental health care, privacy, and intimacy in AI-based conversational agents. <em>Communication and Change</em>, 1, 15. <a href="https://doi.org/10.1007/s44382-025-00015-y" target="_blank">doi.org/10.1007/s44382-025-00015-y</a></li>
+      <li class="ref-item" id="ref-11"><span class="ref-n">11.</span> Ritunnano, R., Kleinman, J., Whyte Oshodi, D., Michail, M., Nelson, B., Humpston, C. S., &amp; Broome, M. R. (2022). Subjective experience and meaning of delusions in psychosis: A systematic review and qualitative evidence synthesis. <em>The Lancet Psychiatry</em>, 9(6), 458–476. <a href="https://doi.org/10.1016/S2215-0366(22)00104-3" target="_blank">doi.org/10.1016/S2215-0366(22)00104-3</a></li>
+      <li class="ref-item" id="ref-12"><span class="ref-n">12.</span> Dohnány, S., Kurth-Nelson, Z., Spens, E., Luettgau, L., Reid, A., Gabriel, I., Summerfield, C., Shanahan, M., &amp; Nour, M. M. (2025). Technological folie à deux: Feedback loops between AI chatbots and mental health. <a href="https://arxiv.org/pdf/2507.19218" target="_blank">arxiv.org/pdf/2507.19218</a></li>
+      <li class="ref-item" id="ref-13"><span class="ref-n">13.</span> Chu, M. D., Gerard, P., Pawar, K., Bickham, C., &amp; Lerman, K. (2025). Illusions of intimacy: How emotional dynamics shape human–AI relationships. <a href="https://arxiv.org/pdf/2505.11649" target="_blank">arxiv.org/pdf/2505.11649</a></li>
+      <li class="ref-item" id="ref-14"><span class="ref-n">14.</span> Moore, J., Mehta, A., Agnew, W., Reese Anthis, J., Louie, R., Mai, Y., Yin, P., Cheng, M., Paech, S. J., Klyman, K., Chancellor, S., Lin, E., Haber, N., &amp; Ong, D. (2026). Characterizing delusional spirals through human-LLM chat logs. <a href="https://arxiv.org/pdf/2603.16567" target="_blank">arxiv.org/pdf/2603.16567</a></li>
+      <li class="ref-item" id="ref-15"><span class="ref-n">15.</span> Morrin, H., Nicholls, L., Levin, M., Yiend, J., Iyengar, U., DelGuidice, F., Bhattacharya, S., Tognin, S., MacCabe, J., Twumasi, R., Alderson-Day, B., &amp; Pollak, T. A. (2025). Delusions by design? How everyday AIs might be fuelling psychosis (and what can be done about it). <a href="https://doi.org/10.31234/osf.io/cmy7n_v5" target="_blank">doi.org/10.31234/osf.io/cmy7n_v5</a></li>
+      <li class="ref-item" id="ref-16"><span class="ref-n">16.</span> Carlbring, P., &amp; Andersson, G. (2025). Commentary: AI psychosis is not a new threat: Lessons from media-induced delusions. <em>Internet Interventions</em>. <a href="https://doi.org/10.1016/j.invent.2025.100882" target="_blank">doi.org/10.1016/j.invent.2025.100882</a></li>
+      <li class="ref-item" id="ref-17"><span class="ref-n">17.</span> Gunduz-Bruce, H., McMeniman, M., Robinson, D. G., Woerner, M. G., Kane, J. M., Schooler, N. R., &amp; Lieberman, J. A. (2005). Duration of untreated psychosis and time to treatment response for delusions and hallucinations. <em>American Journal of Psychiatry</em>, 162(10), 1966–1969. <a href="https://doi.org/10.1176/appi.ajp.162.10.1966" target="_blank">doi.org/10.1176/appi.ajp.162.10.1966</a></li>
+      <li class="ref-item" id="ref-18"><span class="ref-n">18.</span> Treyger, E., Matveyenko, J., &amp; Ayer, L. (2025). Manipulating minds: Security implications of AI-induced psychosis. RAND Corporation. <a href="https://www.rand.org/pubs/research_reports/RRA4435-1.html" target="_blank">rand.org/pubs/research_reports/RRA4435-1.html</a></li>
+      <li class="ref-item" id="ref-19"><span class="ref-n">19.</span> American Psychological Association. (2025). Artificial intelligence and adolescent well-being: An APA health advisory. <a href="https://www.apa.org/topics/artificial-intelligence-machine-learning/health-advisory-ai-chatbots-wellness-apps-mental-health.pdf" target="_blank">apa.org [PDF]</a></li>
+      <li class="ref-item" id="ref-20"><span class="ref-n">20.</span> National Academy of Medicine. (2025). What is AI psychosis? <a href="https://nam.edu/news-and-insights/what-is-ai-psychosis/" target="_blank">nam.edu/news-and-insights/what-is-ai-psychosis/</a></li>
+      <li class="ref-item" id="ref-21"><span class="ref-n">21.</span> Hill, K., &amp; Freedman, D. (2025, August 8). Chatbots can go into a delusional spiral. Here's how it happens. <em>The New York Times</em>. <a href="https://www.nytimes.com/2025/08/08/technology/ai-chatbots-delusions-chatgpt.html" target="_blank">nytimes.com</a></li>
+      <li class="ref-item" id="ref-22"><span class="ref-n">22.</span> National Public Radio. (2025, September 19). AI chatbots, safety, and teen suicide risk. <a href="https://www.npr.org/sections/shots-health-news/2025/09/19/nx-s1-5545749/ai-chatbots-safety-openai-meta-characterai-teens-suicide" target="_blank">npr.org</a></li>
+      <li class="ref-item" id="ref-23"><span class="ref-n">23.</span> Shroff, L. (2025). The people outsourcing their thinking to AI. <em>The Atlantic</em>. <a href="https://www.theatlantic.com/technology/2025/12/people-outsourcing-their-thinking-ai/685093/" target="_blank">theatlantic.com</a></li>
+      <li class="ref-item" id="ref-24"><span class="ref-n">24.</span> Business Insider. (2025). David Sacks says AI psychosis concerns echo social media moral panic. <a href="https://www.businessinsider.com/david-sacks-ai-psychosis-social-media-moral-panic-safety-2025-8" target="_blank">businessinsider.com</a></li>
+    </ol>
+  </div>
+  <div class="footer-bar"><span>All superscript reference numbers throughout this document link to entries above. URLs provided where available in the original source document.</span></div>
+</div>
+
+<!-- BACK STRIP -->
+<div class="band band-ink" style="padding:16px 52px;font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.22);">
+  AI Psychosis: An Emerging Mental Health Concern in Human–AI Interaction &nbsp;·&nbsp; Health Issue Brief &nbsp;·&nbsp; March 2026 
+</div>
+
+</div><!-- /zine -->
+
+<button class="pdf-btn" onclick="window.print()">Export PDF</button>
+
+</body>
+</html>
