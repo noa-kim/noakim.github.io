@@ -821,10 +821,18 @@ line-height: 1.6;
     flex-direction: column;
   }
 
-  /* Last page by ID — :last-of-type is unreliable when non-.page divs follow */
+  /* References may span 2 sheets — remove fixed height and clipping */
   #references {
+    height: auto;
+    overflow: visible;
     page-break-after: avoid;
     break-after: avoid;
+  }
+
+  /* Keep each individual reference entry on one sheet */
+  #references .ref-item {
+    page-break-inside: avoid;
+    break-inside: avoid;
   }
 
   /* Orphan elements outside .page divs — hide to prevent extra sheets */
@@ -865,7 +873,8 @@ line-height: 1.6;
     color: #111 !important;
     opacity: 1 !important;
   }
-
+  .typ-label { color:#fff !important; opacity: 1 !important; }
+  .typ-desc { color:#fff !important; opacity: 1 !important; }
   /* Dark .band elements embedded inside light pages */
   .band-ink, .band-ink * { color: #fff !important; opacity: 1 !important; }
 
@@ -889,12 +898,8 @@ line-height: 1.6;
   a { text-decoration: none; }
   a[href]::after { content: none; }
 
-  /* In reference list only, append URL so citations stay useful on paper */
-  .ref-item a[href]::after {
-    content: " (" attr(href) ")";
-    font-size: 0.68em;
-    word-break: break-all;
-  }
+  /* Reference URLs are already visible as link text — no need to append href again */
+  .ref-item a[href]::after { content: none; }
 
   /* ── SPACE COMPRESSION ───────────────────────────────────────
      Reduce padding/margins/gaps to prevent clipping at 11in.
@@ -903,11 +908,11 @@ line-height: 1.6;
   /* Section content wrapper: was 44px top/bottom, 52px sides */
   .sc { font-size: 0.82em; padding: 20px 36px; }
 
-  /* Section heading: was clamp(2.6rem…4.4rem), 10px bottom margin */
-  .sh { font-size: clamp(1.5rem, 3.5vw, 2.2rem); margin-bottom: 6px; }
+  /* Section heading — !important beats inline style="font-size:2.2rem;margin-bottom:24px;" */
+  .sh { font-size: clamp(1.5rem, 3.5vw, 2.2rem) !important; margin-bottom: 6px !important; }
 
-  /* Heading rule: was margin 14px top, 32px bottom */
-  .sh-rule { margin-top: 6px; margin-bottom: 14px; }
+  /* Heading rule — !important beats inline style="margin-bottom:28px;" */
+  .sh-rule { margin-top: 6px !important; margin-bottom: 14px !important; }
 
   /* Section label bar */
   .section-bar { padding-top: 5px; padding-bottom: 5px; }
@@ -983,6 +988,7 @@ line-height: 1.6;
     <a href="#clinical">Clinical</a>
     <a href="#interventions">Interventions</a>
     <a href="#conclusion">Conclusion</a>
+    <a href="#orgs">Organizations</a>
     <a href="#references">References</a>
   </nav>
 
@@ -1051,17 +1057,17 @@ line-height: 1.6;
             <div class="infobox-title">Functional Typology <sup><a href="https://doi.org/10.1016/j.landig.2025.100974" target="_blank">6</a></sup></div>
             <p style="margin-bottom:6px;font-size:0.82rem;">Flathers, Roux, and Torous propose that an LLM may operate as a:</p>
             <div class="typology" style="margin:12px 0 0;">
-              <div class="typ">
-                <div class="typ-label">Catalyst</div>
-                <div class="typ-desc">Precipitates new symptoms in a previously healthy user</div>
+              <div class="typ" style="color:var(--cream)!important;">
+                <div class="typ-label" style="color:var(--cream)!important;">Catalyst</div>
+                <div class="typ-desc" style="color:var(--cream)!important;">Precipitates new symptoms in a previously healthy user</div>
               </div>
               <div class="typ">
-                <div class="typ-label">Amplifier</div>
-                <div class="typ-desc">Worsens a pre-existing cognitive vulnerability</div>
+                <div class="typ-label" style="color:var(--cream)!important;">Amplifier</div>
+                <div class="typ-desc" style="color:var(--cream)!important;">Worsens a pre-existing cognitive vulnerability</div>
               </div>
               <div class="typ">
-                <div class="typ-label">Co-Author</div>
-                <div class="typ-desc">Builds harmful narratives through iterative dialogue</div>
+                <div class="typ-label" style="color:var(--cream)!important;">Co-Author</div>
+                <div class="typ-desc" style="color:var(--cream)!important;">Builds harmful narratives through iterative dialogue</div>
               </div>
               <div class="typ">
                 <div class="typ-label" style="color:var(--ink)!important;">Object</div>
@@ -1346,6 +1352,66 @@ line-height: 1.6;
 
 
 
+<!-- ═══════════════════ ORGANIZATIONS TO WATCH ═══════════════════ -->
+<div class="page" id="orgs" style="background:var(--teal-pale);">
+  <div class="section-bar" style="background:var(--teal);color:#fff;">
+    <span class="label" style="color:rgba(255,255,255,0.8);">Resource</span>
+    <span class="label" style="color:rgba(255,255,255,0.8);">Organizations to Watch</span>
+  </div>
+  <div class="sc">
+    <h2 class="sh" style="color:var(--teal);">Organizations<br>to Watch</h2>
+    <div class="sh-rule" style="background:var(--teal);margin-bottom:28px;"></div>
+    <p style="max-width:600px;margin-bottom:28px;color:var(--ink);">The following organizations are actively working at the intersection of AI, mental health, and public-interest technology governance.</p>
+
+    <div class="col2" style="gap:24px;">
+
+      <div style="display:flex;flex-direction:column;gap:18px;">
+
+        <div class="infobox" style="border-color:var(--teal);background:#fff;">
+          <div class="infobox-title" style="color:var(--teal);">Human Line Project</div>
+          <p>Grassroots support, advocacy, and research focused on harms linked to AI delusions, emotional dependency, and related crises.</p>
+          <p style="margin-bottom:0;"><a href="https://www.thehumanlineproject.org/" target="_blank" style="color:var(--teal);word-break:break-all;">thehumanlineproject.org</a></p>
+        </div>
+
+        <div class="infobox" style="border-color:var(--teal);background:#fff;">
+          <div class="infobox-title" style="color:var(--teal);">Center for Humane Technology</div>
+          <p>Public-interest organization examining how AI systems shape attention, attachment, and psychological well-being, including recent work on "attachment hacking" and AI psychosis.</p>
+          <p style="margin-bottom:0;"><a href="https://www.humanetech.com/" target="_blank" style="color:var(--teal);word-break:break-all;">humanetech.com</a></p>
+        </div>
+
+        <div class="infobox" style="border-color:var(--teal);background:#fff;">
+          <div class="infobox-title" style="color:var(--teal);">All Tech Is Human</div>
+          <p>Nonprofit that convenes the responsible tech ecosystem and connects policy, civil society, and technology stakeholders around public-interest governance.</p>
+          <p style="margin-bottom:0;"><a href="https://alltechishuman.org/" target="_blank" style="color:var(--teal);word-break:break-all;">alltechishuman.org</a></p>
+        </div>
+
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:18px;">
+
+        <div class="infobox" style="border-color:var(--teal);background:#fff;">
+          <div class="infobox-title" style="color:var(--teal);">DAIR Institute</div>
+          <p>Distributed AI Research Institute — an independent, community-rooted research organization focused on the social and ethical implications of AI, centering those most affected by algorithmic harms.</p>
+          <p style="margin-bottom:0;"><a href="https://www.dair-institute.org/projects/" target="_blank" style="color:var(--teal);word-break:break-all;">dair-institute.org</a></p>
+        </div>
+
+        <div class="infobox" style="border-color:var(--teal);background:#fff;">
+          <div class="infobox-title" style="color:var(--teal);">Center for Ethics, Society, and Computing (ESC) — University of Michigan</div>
+          <p>A research center and collective of scholars committed to feminist, justice-focused, and interdisciplinary approaches to computing — examining the social, cultural, and political dimensions of digital technologies and interceding in structures of power and inequality.</p>
+          <p style="margin-bottom:0;"><a href="https://esc.umich.edu/" target="_blank" style="color:var(--teal);word-break:break-all;">esc.umich.edu</a></p>
+        </div>
+
+        <div class="infobox" style="border-color:var(--teal);background:#fff;">
+          <div class="infobox-title" style="color:var(--teal);">Digital Psychiatry Division — Beth Israel Deaconess Medical Center</div>
+          <p>Clinical research group using digital tools and passive sensing to understand and improve mental health outcomes, affiliated with Harvard Medical School.</p>
+          <p style="margin-bottom:0;"><a href="https://www.digitalpsych.org/" target="_blank" style="color:var(--teal);word-break:break-all;">digitalpsych.org</a></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ═══════════════════ REFERENCES ═══════════════════ -->
 <div class="page pg-ref" id="references">
   <div class="section-bar section-bar-ink">
@@ -1383,7 +1449,6 @@ line-height: 1.6;
       <li class="ref-item" id="ref-24"><span class="ref-n">24.</span> Business Insider. (2025). David Sacks says AI psychosis concerns echo social media moral panic. <a href="https://www.businessinsider.com/david-sacks-ai-psychosis-social-media-moral-panic-safety-2025-8" target="_blank">businessinsider.com</a></li>
     </ol>
   </div>
-  <div class="footer-bar"><span>All superscript reference numbers throughout this document link to entries above. URLs provided where available in the original source document.</span></div>
 </div>
 
 <!-- BACK STRIP -->
